@@ -11,6 +11,6 @@ compiling c:  g++ <C_FILE> -o <EXE_FILE>
   - yylex()
   - yywrap() :calls when EOF!!! 
   
-  Conditions:
-  - specific: %x
-  - general: %s
+  Conditions: activate with BEGIN <NAME>
+  - specific: %x <NAME>
+  - general: %s <NAME>
