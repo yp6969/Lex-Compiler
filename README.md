@@ -10,3 +10,7 @@ compiling c:  g++ <C_FILE> -o <EXE_FILE>
   built in func:
   - yylex()
   - yywrap() :calls when EOF!!! 
+  
+  Conditions:
+  - specific: %x
+  - general: %s
