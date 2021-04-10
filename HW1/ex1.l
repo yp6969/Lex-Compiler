@@ -11,7 +11,7 @@
 %}
 
 digit [0-9]
-num	[1-9]{gidit}*("."{digit}+)?
+num	[1-9]{digit}*("."{digit}+)?
 letter[a-zA-Z]
 word {letter}+
 ws [ \t]+
@@ -35,10 +35,10 @@ int main(int argc, char** argv){
 }
 
 int yywrap(){
-	printf("number of char %d");
-	printf("number of numbers %d");
-	printf("number of words %d");
-	printf("number of lines %d");
+	printf("number of char %d\n", char_cnt);
+	printf("number of numbers %d\n", num_cnt);
+	printf("number of words %d\n", word_cnt);
+	printf("number of lines %d\n", line_cnt);
 	return 0;
 }
 
