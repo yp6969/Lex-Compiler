@@ -73,7 +73,7 @@ endp                        {ECHO;return ENDP;}
 {NUM}                       {ECHO;return NUM;}
 {WS}						{ECHO;}
 {LINE}						{ECHO; fprintf(yyout,"%d ", ++cnt_line);}
-.							{fprintf(yyout,"Error: \"%s\" is not a valid token\n",yytext);}
+.							{fprintf(yyout,"Error: in line %d \"%s\" is not a valid token\n",cnt_line, yytext);}
 
 %%
 
