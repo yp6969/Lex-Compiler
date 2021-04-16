@@ -12,7 +12,7 @@
 
 void printTok(int token, FILE* yyout_tok);
 int fileNameCheck(char* fileName);
-void modifyFileName(char* fileName, char* change);
+char* modifyFileName(char* fileName, char* change);
 
 
 int cnt_line = 0;
@@ -85,7 +85,7 @@ int main(int argc, char** argv){
         exit(0);
     }
 
-    if(sle_check(argv[1])){
+    if(fileNameCheck(argv[1])){
         yyin = fopen(argv[1], "r");
         FILE_CHEK(yyin);
 
@@ -179,65 +179,33 @@ void printTok(int token, FILE* yyout_tok){
           
         /* with attribute tokens */
         case ID:
-            fprintf(yyout_tok, "%s\tID\tID=%s, Length=%d\n",yytext, yytext, yylength);
+            fprintf(yyout_tok, "%s\tID\tID=%s, Length=%d\n",yytext, yytext, yyleng);
             break;
         case NUM:
             fprintf(yyout_tok, "%s\tNUM\tVal=%s\n",yytext, yytext);
             break;
         case RELOP:
-            switch(yytext){
-                case "<":
-                    attr = "LT";
-                    break;
-                case ">":
-                    attr = "GT";
-                    break;
-                case "<>":
-                    attr = "NE";
-                    break;
-                case "=":
-                    attr = "EQ";
-                    break;
-            }
+            if(!strcmp(yytext, "<")) {attr = "LT";}
+            else if(!strcmp(yytext, ">")){attr = "GT";}
+            else if(!strcmp(yytext, "<>")){attr = "NE";}
+            else if(!strcmp(yytext, "=")){attr = "EQ";}
             fprintf(yyout_tok, "%s\tRELOP\t%s\n",yytext, attr);
             break;
         case LOGOP:
-            switch(yytext){
-                case "&":
-                    attr = "AND";
-                    break;
-                case "~":
-                    attr = "OR";
-                    break;
-                case "!":
-                    attr = "NOT";
-                    break;
-            }
+            if(!strcmp(yytext, "&")) {attr = "AND";}
+            else if(!strcmp(yytext, "~")){attr = "OR";}
+            else if(!strcmp(yytext, "!")){attr = "NOT";}
             fprintf(yyout_tok, "%s\tLOGOP\t%s\n",yytext, attr);
             break;
         case ADDOP:
-            switch(yytext){
-                case "+":
-                    attr = "ADD";
-                    break;
-                case "-":
-                    attr = "MINUS";
-                    break;
-            }
+            if(!strcmp(yytext, "+")) {attr = "ADD";}
+            else if(!strcmp(yytext, ">")){attr = "SUB";}
             fprintf(yyout_tok, "%s\tADDOP\t%s\n",yytext, attr);
             break;
         case MULOP:
-            switch(yytext){
-                case "*":
-                    attr = "MUL";
-                    break;
-                case "/":
-                    attr = "DEV";
-                    break;
-                case "mod":
-                    attr = "MOD";
-                    break;
-            }
+            if(!strcmp(yytext, "*")) {attr = "MUL";}
+            else if(!strcmp(yytext, "/")){attr = "DEV";}
+            else if(!strcmp(yytext, "mod")){attr = "MOD";}
             fprintf(yyout_tok, "%s\tMULOP\t%s\n",yytext, attr);
             break;
         case ASSIGNOP:
@@ -253,7 +221,7 @@ int fileNameCheck(char* fileName){
 }
 
 /* change the ending of file*/
-void modifyFileName(char* fileName, char* change){
+char* modifyFileName(char* fileName, char* change){
     char* newName = strdup(fileName);
     int corsur = strlen(fileName) - 3;
     int i;
@@ -265,5 +233,3 @@ void modifyFileName(char* fileName, char* change){
 }
 
 int yywrap(){return 1;}
-
-%%
