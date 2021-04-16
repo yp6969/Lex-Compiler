@@ -1,0 +1,51 @@
+prog	PROG
+fibonacci	ID	ID=fibonacci, Length=9
+;	SEMICOL
+var	VAR
+a	ID	ID=a, Length=1
+:	COLON
+int	INT
+,	COMMA
+b	ID	ID=b, Length=1
+:	COLON
+int	INT
+,	COMMA
+c	ID	ID=c, Length=1
+:	COLON
+int	INT
+;	SEMICOL
+start	START
+a	ID	ID=a, Length=1
+<=	ASSIGNOP	ASSIGN
+0	NUM	Val=0
+;	SEMICOL
+b	ID	ID=b, Length=1
+<=	ASSIGNOP	ASSIGN
+1	NUM	Val=1
+;	SEMICOL
+loop	LOOP
+a	ID	ID=a, Length=1
+<	RELOP	LT
+1000	NUM	Val=1000
+do	DO
+put	PUT
+a	ID	ID=a, Length=1
+;	SEMICOL
+c	ID	ID=c, Length=1
+<=	ASSIGNOP	ASSIGN
+a	ID	ID=a, Length=1
++	ADDOP	ADD
+b	ID	ID=b, Length=1
+;	SEMICOL
+a	ID	ID=a, Length=1
+<=	ASSIGNOP	ASSIGN
+b	ID	ID=b, Length=1
+;	SEMICOL
+b	ID	ID=b, Length=1
+<=	ASSIGNOP	ASSIGN
+c	ID	ID=c, Length=1
+;	SEMICOL
+endl	ENDL
+;	SEMICOL
+endp	ENDP
+.	DOT
